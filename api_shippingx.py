@@ -23,9 +23,20 @@ def get_xi_data(url):
 * @params url, params
 * return dict
 """
+
 def alert(url, params):
     headers = {'Content-type': 'application/json; charset=utf-8'}
-    r = requests.post(url, json=params, headers=headers)
+    try:
+        r = requests.post(url, json=params, headers=headers)
+    except requests.exceptions.Timeout as e:
+        print("timeout error: ", e)
+        return False
+    except requests.exceptions.TooManyRedirects as e:
+        print("too many redirects: ", e)
+        return False
+    except requests.exceptions.RequestException as e:
+        print("catastrophic error: ", e)
+        return False
     return r
 
 recipients = ["+265998006237", "+265991450316", "+265995246144", "+265998276712"] #, "+265884563025", "+265995971632", "+265999453942", "+265888027458", "+265997762646","+265999755473","+265992215557", "+265991351754","+265994666034","+265996963312", "+265998555333","+265996146325","+265992268777","+265993030442"]
