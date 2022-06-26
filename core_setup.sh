@@ -10,5 +10,5 @@ git describe > HEAD
 echo "____________________________________________"
 echo "Copying config.json.example to config.json"
 echo "--------------------------------------------"
-cp config.json.example config.json
+#cp config.json.example config.json
 echo "____________________________________________"
